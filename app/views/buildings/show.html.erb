@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Building Image:</strong>
+  <%= image_tag @building.building_image if @building.building_image.attached?, size:"100x100" %>
+</p>
+
+<p>
   <strong>Owner:</strong>
   <%= @building.owner %>
 </p>

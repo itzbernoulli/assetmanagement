@@ -1,80 +1,151 @@
-<%= form_with(model: building, local: true) do |form| %>
-  <% if building.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(building.errors.count, "error") %> prohibited this building from being saved:</h2>
+<div class="container">
+  <%= form_with(model: building, local: true) do |form| %>
+    <% if building.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(building.errors.count, "error") %> prohibited this building from being saved:</h2>
 
-      <ul>
-        <% building.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% building.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-4">
+        <fieldset>
+              <div class="form-group">
+              <%= form.label :owner %>
+              <%= form.text_field :owner , class: "form-control", placeholder: "Input Owner"%>
+              </div>
+        </fieldset>
+      </div>
+
+      <div class="col-4">
+        <fieldset>
+              <div class="form-group">
+              <%= form.label :address %>
+              <%= form.text_field :address , class: "form-control", placeholder: "Address"%>
+              </div>
+        </fieldset>
+      </div>
+      </div>
+
+    <div class="row">
+      <div class="col-4">
+        <fieldset>
+              <div class="form-group">
+              <%= form.label :sqmt %>
+              <%= form.number_field :sqmt ,min: 1 , class: "form-control", placeholder: "Square Meters"%>
+              </div>
+        </fieldset>
+      </div>
+
+      <div class="col-4">
+        <fieldset>
+              <div class="form-group">
+              <%= form.label :price %>
+              <%= form.number_field :price ,min: 1 , class: "form-control", placeholder: "Price"%>
+              </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+
+<div class="col-4">
+<fieldset>
+    <div class="form-group">
+      <%= form.label :subtype %>
+      <%= form.select :subtype, Building.subtypes.keys, {}, class: "form-control"%>
+    </div>
+    </fieldset>
+    </div>
+
+      <div class="col-4">
+        <fieldset>
+              <div class="form-group">
+              <%= form.label :building_image %>
+              <%= form.file_field :building_image , class: "form-control"%>
+              </div>
+        </fieldset>
+      </div>
+    </div>
+
+  <div id="house">
+
+    <div class="row">
+      <div class="col-4">
+        <fieldset>
+              <div class="form-group">
+              <%= form.label :rooms %>
+              <%= form.number_field :rooms ,min: 1 , class: "form-control", placeholder: "Rooms"%>
+              </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag 'air_conditioned' %>
+      <br/>
+      <%= radio_button_tag 'air_conditioned', 'Yes', true %>
+      <br/>
+      <%= radio_button_tag 'air_conditioned', 'No' %>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+          <fieldset>
+                <div class="form-group">
+                <%= form.label :floors %>
+                <%= form.number_field :floors ,min: 1 , class: "form-control", placeholder: "Floors"%>
+                </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+  <div id="complex">
+    <div class="row">
+      <div class="col-4">
+        <fieldset>
+          <div class="form-group">
+            <%= form.label :units %>
+            <%= form.number_field :units ,min: 1 , class: "form-control", placeholder: "Units"%>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <div id="commercial">
+    <div class="row">
+      <div class="col-4">
+        <fieldset>
+              <div class="form-group">
+              <%= form.label :shops %>
+              <%= form.number_field :shops ,min: 1 , class: "form-control", placeholder: "Shops"%>
+              </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <fieldset>
+              <div class="form-group">
+              <%= form.label :parking %>
+              <%= form.number_field :parking ,min: 1 , class: "form-control", placeholder: "Units"%>
+              </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+    <div class="form-group">
+      <%= form.submit "SUBMIT", class: "btn btn-primary"%>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :owner %>
-    <%= form.text_field :owner %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sqmt %>
-    <%= form.number_field :sqmt %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :subtype %>
-    <%= form.select :subtype, Building.subtypes.keys, {}%>
-  </div>
-
-<div id="house">
-  <div class="field">
-    <%= form.label :rooms %>
-    <%= form.number_field :rooms %>
-  </div>
-
-    <div class="field">
-    <%= label_tag 'air_conditioned' %>
-    <%= radio_button_tag 'air_conditioned', 'Yes', true %>
-    <%= radio_button_tag 'air_conditioned', 'No' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :floors %>
-    <%= form.number_field :floors %>
-  </div>
 </div>
-
-<div id="complex">
-    <div class="field">
-    <%= label_tag :units %>
-    <%= number_field_tag :units %>
-  </div>
-</div>
-
-<div id="commercial">
-    <div class="field">
-    <%= label_tag :shops %>
-    <%= number_field_tag :shops %>
-  </div>
-
-      <div class="field">
-    <%= label_tag :parking %>
-    <%= number_field_tag :parking %>
-  </div>
-</div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
 
