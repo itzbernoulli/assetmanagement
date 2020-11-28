@@ -26,6 +26,8 @@ class BuildingsController < ApplicationController
   def create
     @building = Building.new(building_params)
 
+    @building = set_descriptions(@building)
+
     respond_to do |format|
       if @building.save
         format.html { redirect_to @building, notice: 'Building was successfully created.' }
@@ -69,6 +71,25 @@ class BuildingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def building_params
-      params.require(:building).permit(:owner, :address, :sqmt, :price, :type)
+      params.require(:building).permit(:owner, :address, :sqmt, :price, :subtype)
     end
+
+    def set_descriptions(building)
+      case building.subtype
+      when "house"
+        building.description['rooms'] = params['building']['rooms']
+        building.description['floors'] = params['building']['floors']
+        building.description['air_conditioned'] = params['air_conditioned']
+      when "complex"
+        building.description['units'] = params['units']
+      when "commercial"
+        building.description['shops'] = params['shops']
+        building.description['parking'] = params['units']
+      end
+      building
+    end
+
+  #   def common_params
+  #     [:rooms, :floors]
+  #  end
 end

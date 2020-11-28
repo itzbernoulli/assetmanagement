@@ -5,7 +5,6 @@ class CreateBuildings < ActiveRecord::Migration[6.0]
       t.string :address
       t.integer :sqmt
       t.float :price
-      t.integer :type
 
       t.timestamps
     end

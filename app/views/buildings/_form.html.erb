@@ -28,15 +28,53 @@
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.number_field :price %>
   </div>
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.number_field :type %>
+    <%= form.label :subtype %>
+    <%= form.select :subtype, Building.subtypes.keys, {}%>
   </div>
+
+<div id="house">
+  <div class="field">
+    <%= form.label :rooms %>
+    <%= form.number_field :rooms %>
+  </div>
+
+    <div class="field">
+    <%= label_tag 'air_conditioned' %>
+    <%= radio_button_tag 'air_conditioned', 'Yes', true %>
+    <%= radio_button_tag 'air_conditioned', 'No' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :floors %>
+    <%= form.number_field :floors %>
+  </div>
+</div>
+
+<div id="complex">
+    <div class="field">
+    <%= label_tag :units %>
+    <%= number_field_tag :units %>
+  </div>
+</div>
+
+<div id="commercial">
+    <div class="field">
+    <%= label_tag :shops %>
+    <%= number_field_tag :shops %>
+  </div>
+
+      <div class="field">
+    <%= label_tag :parking %>
+    <%= number_field_tag :parking %>
+  </div>
+</div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
