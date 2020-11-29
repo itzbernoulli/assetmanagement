@@ -2,7 +2,7 @@
 
 <p>
   <strong>Building Image:</strong>
-  <%= image_tag @building.building_image if @building.building_image.attached?, size:"100x100" %>
+   <%= image_tag @building.building_image.attached? ? @building.building_image : "" ,  size:"100x100"  %>
 </p>
 
 <p>
@@ -29,6 +29,37 @@
   <strong>Type:</strong>
   <%= @building.subtype %>
 </p>
+
+<% if @building.subtype == "house" %>
+  <p>
+    <strong>Floor(s):</strong>
+    <%= @building.description['rooms'] %>
+  </p>
+  <p>
+    <strong>Air Conditioned:</strong>
+    <%= @building.description['air_conditioned'] %>
+  </p>
+  <p>
+    <strong>Room(s):</strong>
+    <%= @building.description['rooms'] %>
+  </p>
+  <% elsif @building.subtype == "complex" %>
+
+  <p>
+    <strong>Units:</strong>
+    <%= @building.description['units']  %>
+  </p>
+      
+  <% else %>
+  <p>
+    <strong>Parking:</strong>
+    <%= @building.description['parking'] %>
+  </p>
+  <p>
+    <strong>Shops:</strong>
+    <%= @building.description['shops'] %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_building_path(@building) %> |
 <%= link_to 'Back', buildings_path %>

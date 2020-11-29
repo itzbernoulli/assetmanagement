@@ -1,83 +1,89 @@
 
 <p id="notice"><%= notice %></p>
-
-  <div class="container">
       <div class="page-header" id="banner">
         <div class="row">
           <div class="col-lg-8 col-md-7 col-sm-6">
             <h1>Buildings</h1>
           </div>
           <div class="col-lg-4 col-md-5 col-sm-6">
-
+                <%= link_to "ADD PROPERTY", buildings_path%>
           </div>
         </div>
       </div>
-      </div>
 
-    <div class="container">
+
         <% @buildings.each do |building| %>
+
         <div class="row">
           <div class="col-lg-10 col-md-7 col-sm-6">
                 <div class="card border-secondary mb-3">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-3">
                             <%= image_tag building.building_image.attached? ? building.building_image : "" ,  size:"100x100"  %>
                         </div>
-                        <div class="col-1">
-                            <p class="card-text"><%= building.owner %></p>
-                        </div>
-                        <div class="col-1">
-                            <p class="card-text"><%= building.address %></p>
-                        </div>
-                        <div class="col-1">
-                            <p class="card-text"><%= building.sqmt %></p>
-                        </div>
-                        <div class="col-1">
-                            <p class="card-text"><%= building.price %></p>
-                        </div>
-                        <div class="col-1">
-                            <p class="card-text"><%= building.subtype %></p>
-                        </div>
+                        <div class="col-8 mx-auto">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="card-text"><b>Owner: </b><%= building.owner %></p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Address: </b><%= building.address %></p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Price: </b><%= building.price %></p>
+                                </div>
+                            </div>
 
-                        <% if building.subtype == "house" %>
-                        <div class="col-1">
-                            <p>Floors</p>
-                            <p class="card-text"><%= building.description['floors'] %></p>
-                        </div>
-                        <div class="col-1">
-                            <p>Air Conditioned</p>
-                            <p class="card-text"><%= building.description['air_conditioned'] %></p>
-                        </div>
-                        <div class="col-1">
-                            <p>Rooms</p>
-                            <p class="card-text"><%= building.description['rooms'] %></p>
-                        </div>
-                        <% elsif building.subtype == "complex" %>
-                            <div class="col-1">
-                            <p>Units</p>
-                            <p class="card-text"><%= building.description['units'] %></p>
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="card-text"><b>SQ Meter: </b><%= building.sqmt %></p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Price: </b><%= building.price %></p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Building Type: </b><%= building.subtype %></p>
+                                </div>
                             </div>
+
+                            <div class="row">
+                            <% if building.subtype == "house" %>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Floor(s): </b><%= building.description['floors'] %></p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Air Conditioned: </b><%= building.description['air_conditioned'] %></p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Room(s): </b><%= building.description['rooms'] %></p>
+                                </div>
                             
-                        <% else %>
-                        <div class="col-1">
-                        <p>Parking</p>
-                            <p class="card-text"><%= building.description['parking'] %></p>
+                            <% elsif building.subtype == "complex" %>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Units: </b><%= building.description['units'] %></p>
+                                </div>
+                            <% else %>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Parking: </b><%= building.description['parking']  %></p>
+                                </div>
+                                <div class="col-4">
+                                    <p class="card-text"><b>Shops: </b><%= building.description['shops'] %></p>
+                                </div>
+                            <% end %>
                             </div>
-                            <div class="col-1">
-                            <p>Shops</p>
-                            <p class="card-text"><%= building.description['shops'] %></p>
+                            <div class="row justify-center">
+                                <div class="col-4 offset-4">
+                                <p><%= time_ago_in_words(building.created_at) %> ago</p>
+                                </div>
                             </div>
-                        <% end %>
+                        </div>
                         <div class="col-1">
-                            
-                            <button type="button" class="btn btn-primary">BUY</button>
+                            <%= link_to "BUY" , buy_path, class: "btn btn-primary" %>
                         </div>
                     </div>
                 </div>
                 </div>
           </div>
         </div>
-      </div>
-          <% end %>
-      </div>
+    <% end %>

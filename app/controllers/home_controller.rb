@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   def index
-    @buildings = Building.all
+    @buildings = Building.order(created_at: :desc)
   end
 
-  def create
-    
+  def buy
+    VeryLongTaskJob.perform_later
+    redirect_to root_path
   end
 end
