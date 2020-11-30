@@ -25,9 +25,7 @@ This project uses:
 
 4. run `rails assetmgt:setup_database` to create, migrate and seed the database, 
 
-5. run `bin/rails spec` to verify all tests pass
-
-6. run `rails s` and take it for a spin.
+5. run `rails s` and take it for a spin.
 
 
 

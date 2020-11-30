@@ -7,7 +7,7 @@ class AddSubtypeToBuildings < ActiveRecord::Migration[6.0]
   end
 
   def down
-    remove_column :buildings, :subtype
+    remove_column :buildings, :subtype, :building_type
     execute <<-SQL
       DROP TYPE building_type
     SQL

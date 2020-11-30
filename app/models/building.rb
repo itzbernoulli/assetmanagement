@@ -8,10 +8,10 @@ class Building < ApplicationRecord
         return unless building_image.attached?
 
         unless building_image.byte_size <= 1.megabyte
-            errors.add(:main_image, "is too big")
+            errors.add(:building_image, "is too big")
           end
         
-          acceptable_types = ["image/jpeg", "image/png"]
+          acceptable_types = ["image/jpg", "image/jpeg", "image/png"]
           unless acceptable_types.include?(building_image.content_type)
             errors.add(:building_image, "must be a JPEG or PNG")
           end
